@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <title> My BMWs</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>    
+<body>
+    <div class="cars">
+        {% include "carview/cars.html" with cars=cars340 %}
+    </div>
+    <div class="cars">
+        {% include "carview/cars.html" with cars=cars330 %}
+    </div>
+</body>
+</html>
