@@ -1,20 +1,23 @@
 {% load static %}
 
 {% for car in cars %}
-        <div class="card">
+        <div class="card  {% if 'deleted' in car %} deleted {% endif %}">
             <div class="image_container">
                 <img src="{% static '' %}{{ car.id }}.png" alt="Avatar" style="width:100%">
-                {% if car.data.picture_fake == 'True' %}<div class="fake_image">Fake image</div> {% endif %}
+                {% if car.data.picture_fake %}<div class="fake_image">Fake image</div> {% endif %}
             </div>
             <div class="container">
-                <a href="{{ car.url }}" class="name"><b>{{ car.data.name }}</b></a>
-                <div class="km"> 🏁 {{ car.data.mileage }}</div>
-                <div class="price"> 💰 {{ car.data.price }}</div>
-                <div class="location">📍 {{ car.data.location }}</div>
-                <div class="color">🎨 {{ car.data.feature.Farbe }}
-                <div class="guarantee"> 🛠 {{ car.data.feature.GarantieProgramm }}</div>
+                <div class="features_container">
+                    <a href="{{ car.url }}" class="name"><b>{{ car.data.name }}</b></a>
+                    <div>{% if 'Vorschäden' in car.data.feature %}💥 Vorschaden {% endif %}</div>
+                    <div class="km"> 🏁 {{ car.data.mileage }}</div>
+                    <div class="registration">📘 {{ car.data.feature.Erstzulassung }}</div>
+                    <div class="price"> 💰 {{ car.data.price }}</div>
+                    <div class="location">📍 {{ car.data.location }}</div>
+                    <div class="color">🎨 {{ car.data.feature.Farbe }} </div>
+                    <div> 🪑 {{ car.data.feature.Polster }}</div>
+                    <div class="guarantee"> 🛠 {{ car.data.feature.GarantieProgramm }}</div>
                 </div>
-
                 <div class="eq_container">
                     {% for eq,value in car.found_equipment.items %}
                     <div class="row">

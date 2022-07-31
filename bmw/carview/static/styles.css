@@ -59,6 +59,12 @@ body {
   .eq_container {
       padding-top: 50px;
   }
+
+  .features_container {
+    position: relative;
+    height: 70%;
+  }
+
   .row {
     display: flex;
     flex-direction: row;
@@ -77,4 +83,8 @@ body {
 
   .eq_value{
     width: 20%;
+    }
+
+.deleted {
+    opacity: 20%;
 }

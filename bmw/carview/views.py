@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.http import HttpResponse
 from django.template import loader
 import os, sys
@@ -22,6 +23,11 @@ def cars(request):
         'Sitzverstellung': 'Sitzverstellung',
         'M Sportpaket':  'M Sportpaket',
         'Sitzheizung': 'Sitzheizung',
+        'Wireless charging': 'Wireless Charging',
+        'Harman Kardon HiFi': 'Harman Kardon',
+        'Komfortzugang': 'Komfortzugang',
+        'Alu Leisten': 'Alu',
+        'Mischbereifung': 'Mischbereifung'
     }
 
     for k,v in cars.items():
@@ -33,7 +39,7 @@ def cars(request):
                 if dv in e:
                     found_equipment[dk] = True
                     break
-        cars[k]['found_equipment'] = found_equipment 
+        cars[k]['found_equipment'] = found_equipment
     
     template = loader.get_template('carview/index.html')
     context = {

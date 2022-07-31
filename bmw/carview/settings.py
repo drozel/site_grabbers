@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'microserver.local',
-    '192.168.47.10'
+    '192.168.47.10',
+    'localhost'
 ]
 
 
