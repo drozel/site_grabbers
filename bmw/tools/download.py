@@ -3,7 +3,6 @@ import shutil # save img locally
 import os
 
 def download(url, path):
-    os.mkdir(path)
     res = requests.get(url, stream = True)
 
     if res.status_code == 200:

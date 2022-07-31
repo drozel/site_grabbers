@@ -17,6 +17,8 @@ def hookCarDeleted(car_data):
     print("car sold: %s" % car_data['data']['name'])
 
 def update(force=False):
+    os.mkdir('data')
+    os.mkdir('data/pictures')
     # get cars for the query
     cars = getCarsList("https://gebrauchtwagen.bmw.de/nsc/search?q=:creationDateSort-desc:attributes-bodyType:Gran%20Turismo:series:3:model:330:model:340:environment-fuelType:Benzin:drivingAssistance-rearViewCamera:true:interiorDesign-electronicSeatAdjustment:true:entertainmentCommunication-navigationsystemProfessional:true:equipment-mSportPackage:true")
     print("currently %d cars available" % len(cars))

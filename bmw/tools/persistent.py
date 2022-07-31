@@ -9,7 +9,11 @@ def save(data):
     db.commit()
 
 def load():
-    db = SqliteDict(FileName)
-    data = dict(db)
-    db.close()
+    try:
+        db = SqliteDict(FileName)
+        data = dict(db)
+        db.close()
+    except:
+        return {}
+        
     return data
