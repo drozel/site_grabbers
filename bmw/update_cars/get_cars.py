@@ -12,6 +12,9 @@ from django.test import tag
 
 CLEANR = re.compile('<.*?>') 
 
+def data_version():
+    return "2.1"
+
 def clean(raw, key=False):
   cleantext = str(raw)
   cleantext = re.sub(CLEANR, '', cleantext)

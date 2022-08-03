@@ -7,9 +7,15 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>    
 <body>
+    <div class="header row">
+        <a href="{{ info.query }}" class="cars_link button">Link</a>
+        <div class="updated grayed_text">{{ info.updated }}</div>
+    </div>
+    <div class="row cars_header grayed_text">340i: {{ cars340 | length  }}</div>
     <div class="cars">
         {% include "carview/cars.html" with cars=cars340 %}
     </div>
+    <div class="row cars_header grayed_text">330i: {{ cars330 | length  }}</div>
     <div class="cars">
         {% include "carview/cars.html" with cars=cars330 %}
     </div>

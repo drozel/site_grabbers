@@ -3,8 +3,6 @@
 trap "exit" INT TERM ERR
 trap "kill 0" EXIT
 
-source .venv/bin/activate
-
 python3 update.py &
 python3 manage.py runserver 0.0.0.0:8085 &
 

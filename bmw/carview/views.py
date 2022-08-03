@@ -30,7 +30,7 @@ def cars(request):
         'Mischbereifung': 'Mischbereifung'
     }
 
-    for k,v in cars.items():
+    for k,v in cars['data'].items():
         found_equipment = {}
         for dk,dv in desired_eq.items():
             found_equipment[dk] = False
@@ -39,13 +39,16 @@ def cars(request):
                 if dv in e:
                     found_equipment[dk] = True
                     break
-        cars[k]['found_equipment'] = found_equipment
+        cars['data'][k]['found_equipment'] = found_equipment
     
     template = loader.get_template('carview/index.html')
     context = {
-        'cars340': filter(lambda c: '340' in c['data']['name'], cars.values()),
-        'cars330': filter(lambda c: '330' in c['data']['name'], cars.values()),
+        'cars340': list(filter(lambda c: '340' in c['data']['name'], cars['data'].values())),
+        'cars330': list(filter(lambda c: '330' in c['data']['name'], cars['data'].values())),
         'desired_eq': desired_eq,
+        'info': { 'query': cars['query'],
+                  'updated': cars['updated'],
+        }
     }
     return HttpResponse(template.render(context, request))
 
