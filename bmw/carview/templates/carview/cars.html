@@ -1,7 +1,6 @@
 {% load static %}
-
 {% for car in cars %}
-        <div class="card  {% if 'deleted' in car %} deleted {% endif %}">
+        <div class="card  {% if car.deleted %} deleted {% endif %}">
             <div class="image_container">
                 <img src="{% static '' %}{{ car.id }}.png" alt="Avatar" style="width:100%">
                 {% if car.data.picture_fake %}<div class="fake_image">Fake image</div> {% endif %}

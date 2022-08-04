@@ -43,8 +43,6 @@ def getCarsList(url):
         id = car_data.find('a', class_="addToCarpark")['data-productcode']
         links[id] = link
 
-    print('{0} cars found'.format(len(links)))
-
     return links
 
 def getCarDetails(url):

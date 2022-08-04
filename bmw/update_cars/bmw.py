@@ -26,7 +26,7 @@ def update(force=False):
         
     # get cars for the query
     cars = getCarsList(main_query)
-    print("currently %d cars available" % len(cars))
+    print("currently %d cars available on the site" % len(cars))
 
     # load known cars
     known_cars = load()
@@ -65,12 +65,14 @@ def update(force=False):
     # check deleted ones
     for id,data in known_cars['data'].items():
         if id not in cars.keys() and 'deleted' not in data: 
-            data['data']['deleted'] = datetime.now()
-            hookCarDeleted(car_data)
+            data['deleted'] = datetime.now()
+            hookCarDeleted(data)
+            known_cars['data'][id] = data
+
 
     # save current state
     known_cars['data_version'] = data_version()
     known_cars['query'] = main_query
     known_cars['updated'] = datetime.now()
     save(known_cars)
-    print('%d cars known' % len(known_cars['data']))
+    print('%d cars in the db' % len(known_cars['data']))

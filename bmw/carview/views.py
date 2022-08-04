@@ -31,11 +31,12 @@ def cars(request):
     }
 
     for k,v in cars['data'].items():
+        if 'deleted' in v:
+            print("deleted at %s" % v['deleted']);
         found_equipment = {}
         for dk,dv in desired_eq.items():
             found_equipment[dk] = False
             for e in v['data']['equipment']:
-                print("in %s" % e)
                 if dv in e:
                     found_equipment[dk] = True
                     break
