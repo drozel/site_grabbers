@@ -27,7 +27,8 @@ def cars(request):
         'Harman Kardon HiFi': 'Harman Kardon',
         'Komfortzugang': 'Komfortzugang',
         'Alu Leisten': 'Alu',
-        'Mischbereifung': 'Mischbereifung'
+        'Mischbereifung': 'Mischbereifung',
+        'CarPlay': 'CarPlay',
     }
 
     for k,v in cars['data'].items():
@@ -42,10 +43,16 @@ def cars(request):
                     break
         cars['data'][k]['found_equipment'] = found_equipment
     
+    cars340 = list(filter(lambda c: '340' in c['data']['name'], cars['data'].values()))
+    cars340.reverse()
+
+    cars330 = list(filter(lambda c: '330' in c['data']['name'], cars['data'].values()))
+    cars330.reverse()
+
     template = loader.get_template('carview/index.html')
     context = {
-        'cars340': list(filter(lambda c: '340' in c['data']['name'], cars['data'].values())),
-        'cars330': list(filter(lambda c: '330' in c['data']['name'], cars['data'].values())),
+        'cars340': cars340,
+        'cars330': cars330,
         'desired_eq': desired_eq,
         'info': { 'query': cars['query'],
                   'updated': cars['updated'],
