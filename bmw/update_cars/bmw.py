@@ -10,7 +10,7 @@ sys.path.append(parentdir)
 from tools.persistent import *
 from tools.download import *
 
-main_query = "https://gebrauchtwagen.bmw.de/nsc/search?q=:creationDateSort-desc:attributes-bodyType:Gran%20Turismo:series:3:model:330:model:340:environment-fuelType:Benzin:drivingAssistance-rearViewCamera:true:entertainmentCommunication-navigationsystemProfessional:true:equipment-mSportPackage:true"
+main_query = "https://gebrauchtwagen.bmw.de/nsc/search?q=:creationDateSort-desc:attributes-bodyType:Gran%20Turismo:series:3:model:330:model:340:environment-fuelType:Benzin:drivingAssistance-rearViewCamera:true:entertainmentCommunication-navigationsystemProfessional:true"
 
 def hookNewCar(car_data):
     print("new car available: %s" % car_data['data']['name'])
