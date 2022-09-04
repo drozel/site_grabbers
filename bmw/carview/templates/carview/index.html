@@ -19,5 +19,9 @@
     <div class="cars">
         {% include "carview/cars.html" with cars=cars330 %}
     </div>
+    <div class="row cars_header grayed_text">320i: {{ cars320 | length  }}</div>
+    <div class="cars">
+        {% include "carview/cars.html" with cars=cars320 %}
+    </div>
 </body>
 </html>

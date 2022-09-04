@@ -31,7 +31,8 @@
                 </div>  
 
                 <div class="row footer">
-                    <div class="added"> {{ car.added }}</div>
+                    <div> Added: {{ car.added }}</div>
+                    {% if car.deleted %}<div> Deleted: {{ car.deleted }}</div>{% endif %}
                     <div class="id float-right"> {{ car.id }}</div>
                 </div>
             </div>

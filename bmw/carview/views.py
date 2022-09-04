@@ -49,10 +49,14 @@ def cars(request):
     cars330 = list(filter(lambda c: '330' in c['data']['name'], cars['data'].values()))
     cars330.reverse()
 
+    cars320 = list(filter(lambda c: '320' in c['data']['name'], cars['data'].values()))
+    cars320.reverse()
+
     template = loader.get_template('carview/index.html')
     context = {
         'cars340': cars340,
         'cars330': cars330,
+        'cars320': cars320,
         'desired_eq': desired_eq,
         'info': { 'query': cars['query'],
                   'updated': cars['updated'],

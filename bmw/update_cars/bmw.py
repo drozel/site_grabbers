@@ -10,7 +10,7 @@ sys.path.append(parentdir)
 from tools.persistent import *
 from tools.download import *
 
-main_query = "https://gebrauchtwagen.bmw.de/nsc/search?q=:creationDateSort-desc:attributes-bodyType:Gran%20Turismo:series:3:model:330:model:340:environment-fuelType:Benzin:drivingAssistance-rearViewCamera:true:entertainmentCommunication-navigationsystemProfessional:true"
+main_query = "https://gebrauchtwagen.bmw.de/nsc/search?q=:creationDateSort-desc:attributes-bodyType:Gran%20Turismo:series:3:model:330:model:340:model:320:environment-fuelType:Benzin:drivingAssistance-rearViewCamera:true:entertainmentCommunication-navigationsystemProfessional:true"
 
 def hookNewCar(car_data):
     print("new car available: %s" % car_data['data']['name'])
@@ -51,8 +51,9 @@ def update(force=False):
 
     # find new cars
     for id, url in cars.items():
-        if id not in known_cars['data'].keys() or force:
-            car_data = {}
+        exiting_one = id in known_cars['data'].keys()
+        if not exiting_one or force:
+            car_data = {} if not exiting_one else known_cars['data'][id]
             if 'added' not in car_data:
                 car_data['added'] = datetime.now()
             car_data['data'] = getCarDetails(url)
