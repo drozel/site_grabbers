@@ -11,17 +11,13 @@
         <a href="{{ info.query }}" class="cars_link button">Link</a>
         <div class="updated grayed_text">{{ info.updated }}</div>
     </div>
-    <div class="row cars_header grayed_text">340i: {{ cars340 | length  }}</div>
+    <div class="row cars_header grayed_text">actual: {{ actual | length  }}</div>
     <div class="cars">
-        {% include "carview/cars.html" with cars=cars340 %}
+        {% include "carview/cars.html" with cars=actual %}
     </div>
-    <div class="row cars_header grayed_text">330i: {{ cars330 | length  }}</div>
+    <div class="row cars_header grayed_text">deleted: {{ deleted | length  }}</div>
     <div class="cars">
-        {% include "carview/cars.html" with cars=cars330 %}
-    </div>
-    <div class="row cars_header grayed_text">320i: {{ cars320 | length  }}</div>
-    <div class="cars">
-        {% include "carview/cars.html" with cars=cars320 %}
+        {% include "carview/cars.html" with cars=deleted %}
     </div>
 </body>
 </html>

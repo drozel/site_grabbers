@@ -43,20 +43,20 @@ def cars(request):
                     break
         cars['data'][k]['found_equipment'] = found_equipment
     
-    cars340 = list(filter(lambda c: '340' in c['data']['name'], cars['data'].values()))
-    cars340.reverse()
+    def byOrderId(e):
+        return e['id']
 
-    cars330 = list(filter(lambda c: '330' in c['data']['name'], cars['data'].values()))
-    cars330.reverse()
 
-    cars320 = list(filter(lambda c: '320' in c['data']['name'], cars['data'].values()))
-    cars320.reverse()
+    deleted = list(filter(lambda c: 'deleted' in c, cars['data'].values()))
+    deleted.sort(key=byOrderId, reverse=True)
+
+    actual = list(filter(lambda c: 'deleted' not in c, cars['data'].values()))
+    actual.sort(key=byOrderId, reverse=True)
 
     template = loader.get_template('carview/index.html')
     context = {
-        'cars340': cars340,
-        'cars330': cars330,
-        'cars320': cars320,
+        'actual': actual,
+        'deleted': deleted,
         'desired_eq': desired_eq,
         'info': { 'query': cars['query'],
                   'updated': cars['updated'],
