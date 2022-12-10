@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <title> My BMWs</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>    
+<body>
+    <div class="header row">
+        <a href="{{ info.query }}" class="cars_link button">Link</a>
+        <div class="updated grayed_text">{{ info.updated }}</div>
+    </div>
+    <div class="row cars_header grayed_text">actual: {{ actual | length  }}</div>
+    <div class="cars">
+        {% include "carview/cars.html" with cars=actual %}
+    </div>
+    <div class="row cars_header grayed_text">deleted: {{ deleted | length  }}</div>
+    <div class="cars">
+        {% include "carview/cars.html" with cars=deleted %}
+    </div>
+</body>
+</html>

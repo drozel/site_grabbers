@@ -1,0 +1,38 @@
+{% load static %}
+{% for car in cars %}
+        <div class="card  {% if car.deleted %} deleted {% endif %}">
+            <div class="image_container">
+                <img src="{% static '' %}{{ car.id }}.png" alt="Avatar" style="width:100%">
+                {% if car.data.picture_fake %}<div class="fake_image">Fake image</div> {% endif %}
+            </div>
+            <div class="container features_container">
+                <a href="{{ car.url }}" class="name"><b>{{ car.data.name }}</b></a>
+                <div>{% if 'Vorschäden' in car.data.feature %}💥 Vorschaden {% endif %}</div>
+                <div class="km"> 🏁 {{ car.data.mileage }}</div>
+                <div class="registration">📘 {{ car.data.feature.Erstzulassung }}</div>
+                <div class="price"> 💰 {{ car.data.price }}</div>
+                <div class="location">📍 {{ car.data.location }}</div>
+                <div class="color">🎨 {{ car.data.feature.Farbe }} </div>
+                <div> 🪑 {{ car.data.feature.Polster }}</div>
+                <div class="guarantee"> 🛠 {{ car.data.feature.GarantieProgramm }}</div>
+            </div>
+            <div class="container eq_container">
+                {% for eq,value in car.found_equipment.items %}
+                <div class="row gray-white">
+                    <div class="eq_key">{{ eq }}:</div> 
+                    <div class="eq_value float-right">
+                        {% if value %} ✅
+                        {% else %}❌
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>  
+
+            <div class="row footer">
+                <div> Added: {{ car.added }}</div>
+                {% if car.deleted %}<div> Deleted: {{ car.deleted }}</div>{% endif %}
+                <div class="id float-right"> {{ car.id }}</div>
+            </div>
+        </div>
+{% endfor %}
